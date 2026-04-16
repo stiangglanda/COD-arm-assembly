@@ -30,7 +30,8 @@ Loop:
 
         b    Loop 
 Done:  
-        str  r0,=r         @ r = r0
+        ldr  r3,=r         @ r3 = Adresse von r
+        str  r0,[r3]       @ r = r0
         swi	 0x11          @ stop
 		
 @       --------------------------------------------------
