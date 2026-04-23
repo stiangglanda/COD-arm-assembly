@@ -8,9 +8,9 @@
 @         maximum = IntArray[i];
 
         .text 
-        .global Maximum
+        .global Maxi
 
-Maximum:
+Maxi:
     ldr r1, =n          @ Lade Adresse von n
     ldr r1, [r1]        @ r1: n
 
