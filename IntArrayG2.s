@@ -31,10 +31,15 @@ ForLoop:
 
     mov r0, r4          @ maximum = IntArray[i];
 next:
-    add r3, r3, #1
+    add r3, r3, #1      @ i++
     b   ForLoop
 
 EndFor:
+
+    ldr r3, =Maximum
+    str r0, [r3]        @ Ergebnis r0 nach Maximum speichern
+
+    swi 0x11            @ stop
 
 
         .data
