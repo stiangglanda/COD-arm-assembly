@@ -32,7 +32,7 @@ Loop:
 Done:  
         ldr  r3,=r         @ r3 = Adresse von r
         str  r0,[r3]       @ r = r0
-        swi	 0x11          @ stop
+        swi  0x11          @ stop
 		
 @       --------------------------------------------------
 
