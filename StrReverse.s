@@ -22,6 +22,7 @@
 @       --------------------------------------------------
 
 Start:
+        push    {r1, r2, r3}        @ Register retten
         ldr     r0, =myString1      @ r0 = Adresse des Strings
         mov     r1, r0              @ char* start = str;
         bl      StrLen              @ int len = StrLength(str);
@@ -30,26 +31,18 @@ Start:
 while:
         cmp     r1, r2              @ while (start < end)
         bge     Done;
-        
 
-        ldr   r1, =myString1    @ r1 = Adresse von myString1
-        mov   r4, r1            @ r4 = Base Address von myString1
+        mov     r3, [r1]
+        str     [r1], [r2]
+        str     [r2], r3
 
-        ldrb  r2, [r1]          @ r2 = myString1[0]
+        add     r1, r1, #1
+        sub     r2, r2, #1
 
-Loop:		
-        cmp   r2, #0            @ while (myString1[i] != '\0')
-        beq   Done              @ myString1[i]=='\0': end while
-		
-        ldrb  r2, [r1, #1]!     @ r2 = myString1[i++]
-
-        b     Loop 
+        b       while 
 Done:  
-        sub   r0, r1, r4        @ Länge berechnen: Endadresse (r1) - Startadresse (r4)
-        ldr   r3, =StrLen1      @ r3 = Adresse von StrLen1
-        str   r0, [r3]          @ StrLen1 = Länge
-        @ pop {r1, r2}
-        swi   0x11              @ stop
+        pop     {r1, r2, r3}        @ Register restaurieren
+        mov     pc, lr              @ return
 		
 @       --------------------------------------------------
 
