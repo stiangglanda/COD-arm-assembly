@@ -16,22 +16,21 @@
 
 Start:
         ldr   r1, =myString1    @ r1 = Adresse von myString1
+        mov   r4, r1            @ r4 = Base Address von myString1
+
         ldrb  r2, [r1]          @ r2 = myString1[0]
-	
-        mov   r0, #0            @ int i=0
+
 Loop:		
         cmp   r2, #0            @ while (myString1[i] != '\0')
         beq   Done              @ myString1[i]=='\0': end while
 		
-        add   r1, r1, #1        @ r1: erhoehe baseadresse um 1 byte
-        ldrb  r2, [r1]          @ lade naechstes zeichen in r2 (waere besser: ldrb  r2, [r1], #1)
-        
-        add   r0, r0, #1        @ i++
+        ldrb  r2, [r1, #1]!     @ r2 = myString1[i++]
 
         b     Loop 
 Done:  
+        sub   r0, r1, r4        @ Länge berechnen: Endadresse (r1) - Startadresse (r4)
         ldr   r3, =StrLen1      @ r3 = Adresse von StrLen1
-        str   r0, [r3]          @ StrLen1 = i
+        str   r0, [r3]          @ StrLen1 = Länge
         swi   0x11              @ stop
 		
 @       --------------------------------------------------
