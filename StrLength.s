@@ -15,6 +15,7 @@
 @       --------------------------------------------------
 
 Start:
+        @ push {r1, r2}
         ldr   r1, =myString1    @ r1 = Adresse von myString1
         mov   r4, r1            @ r4 = Base Address von myString1
 
@@ -31,6 +32,7 @@ Done:
         sub   r0, r1, r4        @ Länge berechnen: Endadresse (r1) - Startadresse (r4)
         ldr   r3, =StrLen1      @ r3 = Adresse von StrLen1
         str   r0, [r3]          @ StrLen1 = Länge
+        @ pop {r1, r2}
         swi   0x11              @ stop
 		
 @       --------------------------------------------------
