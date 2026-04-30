@@ -22,7 +22,16 @@
 @       --------------------------------------------------
 
 Start:
-        @ push {r1, r2}
+        ldr     r0, =myString1      @ r0 = Adresse des Strings
+        mov     r1, r0              @ char* start = str;
+        bl      StrLen              @ int len = StrLength(str);
+        add     r2, r1, r0          @ char* end = str + len;
+
+while:
+        cmp     r1, r2              @ while (start < end)
+        bge     Done;
+        
+
         ldr   r1, =myString1    @ r1 = Adresse von myString1
         mov   r4, r1            @ r4 = Base Address von myString1
 
