@@ -10,7 +10,6 @@
 @       --------------------------------------------------
 
 Start:
-        push    {r1, r2, r3, r4}    @ Register retten
         ldr     r0, =myString1      @ r0 = Adresse des Strings
         bl      StrReverse          @ int len = StrLength(str);
         swi     0x11                @ stop
