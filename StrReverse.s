@@ -27,6 +27,7 @@ Start:
         mov     r1, r0              @ char* start = str;
         bl      StrLen              @ int len = StrLength(str);
         add     r2, r1, r0          @ char* end = str + len;
+        sub     r2, r2, #1
 
 while:
         cmp     r1, r2              @ while (start < end)
