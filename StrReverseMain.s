@@ -41,7 +41,7 @@ StrReverse:
 
 while:
         cmp     r1, r2                @ while (start < end)
-        bge     Done;
+        bge     Done
 
         ldrb    r3, [r1]              @ char temp = *start;
         ldrb    r4, [r2]              @ r4 = *end
