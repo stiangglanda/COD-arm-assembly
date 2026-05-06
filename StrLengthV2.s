@@ -1,4 +1,4 @@
-@ File: StrLengthUpro.s
+@ File: StrLengthV2.s
 
 @ char *ptr
 @ ptr = r0;
