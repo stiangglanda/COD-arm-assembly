@@ -34,7 +34,7 @@
 
 
 copyStr:                              @ r0 = char *source, r1 = char *target
-        push    {r2, r3, lr}          @ Register retten
+        push    {r2, r3, lr}          @ Register retten      maybe remove lr?
 while:
         ldrb    r2, [r0]              @ r2 = *source
         cmp     r2, #0                @ while(*source != '\0')
@@ -89,11 +89,30 @@ CapDone:
 @			Input:   
 @			Output: 
 @			Funktion: 
-@                 
+@               
+@               char NoSpecials(char c) {
+@                       char originalC = c
+@                       c = Capitalize(c)
+@                       if(c >= 'A' && c <= 'Z') {
+@                               return originalC;
+@                       }
+@                       return NULL;
+@               }
+@
 @		-------------------------------------------------
 		
-noSpecials:
-
+noSpecials:                           @ r0 = c
+        push    {r0, lr}              @ char originalC = c and save lr
+        bl      capitalize            @ c = Capitalize(c);
+        cmp     r0, #'A'              @ if(c >= 'A'
+        blt     SpecDone               
+        cmp     r0, #'Z'              @ && c <= 'Z')
+        bgt     SpecDone
+        pop     {r0, pc}              @ return originalC
+SpecDone:
+        pop     {r0, lr}              @ restore originalC and lr
+        mov     r0, #0                @ return NULL;
+        mov     pc, lr                @ return
 		
 @       =================================================
 
