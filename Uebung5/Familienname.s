@@ -72,7 +72,6 @@ PadWhile:
         b       PadWhile
 Done:  
         mov     r0, #0                @ return 0;
-        strb    r0, [r1]              @ *target = '\0';
 Return:
         pop     {r2, r3, lr}          @ Register restaurieren
         mov     pc, lr                @ return
