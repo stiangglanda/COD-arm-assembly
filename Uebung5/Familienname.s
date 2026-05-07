@@ -49,12 +49,12 @@ while:
         moveq   r0, #-1               @ return -1
         beq     Return
 
-        push    {r0}                  @ Save r0
+        mov     r4, r0                @ Save r0
         mov     r0, r2                @ r0 = *source
         bl      capitalize            @ *source = capitalize(*source);
         bl      noSpecials            @ *source = noSpecials(*source);
         mov     r2, r0                @ r2 = *source
-        pop     {r0}                  @ Restore r0
+        mov     r0, r4                @ Restore r0
 
         cmp     r2, #0                @ if (*source != NULL) {
         beq     SkipStore
