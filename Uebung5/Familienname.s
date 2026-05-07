@@ -22,7 +22,7 @@
 @                               if (*target == '\0') {
 @                                       return -1;
 @                               }
-@                               *target++ = *source;
+@                               *target++ = capitalize(*source);
 @                               source++;
 @                       }
 @                       *target = '\0';
@@ -34,7 +34,7 @@
 
 
 copyStr:                              @ r0 = char *source, r1 = char *target
-        push    {r2, r3, lr}          @ Register retten      maybe remove lr?
+        push    {r2, r3, lr}          @ Register retten
 while:
         ldrb    r2, [r0]              @ r2 = *source
         cmp     r2, #0                @ while(*source != '\0')
@@ -45,7 +45,15 @@ while:
         moveq   r0, #-1               @ return -1
         beq     Return
 
-        strb    r2, [r1], #1          @ *target++ = *source;
+        push    {r0}
+        mov     r0, r2
+        bl      capitalize
+        mov     r2, r0
+        pop     {r0}
+
+        
+        strb    r2, [r1], #1          @ *target++ = capitalize(*source);
+
         add     r0, r0, #1            @ source++
         b       while
 Done:  
