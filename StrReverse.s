@@ -8,7 +8,7 @@
 @   void StrReverse(char* str) {
 @       int len = StrLength(str);
 @       char* start = str;
-@       char* end = str + len;
+@       char* end = str + len - 1;
 @
 @       while (start < end) {
 @           char temp = *start;
@@ -25,8 +25,8 @@ StrReverse:
         push    {r1, r2, r3, r4, lr}  @ Register retten
         mov     r1, r0                @ char* start = str;
         bl      StrLen                @ int len = StrLength(str);
-        add     r2, r1, r0            @ char* end = str + len;
-        sub     r2, r2, #1
+        add     r2, r1, r0            @ char* end = str + len - 1;
+        sub     r2, r2, #1            @ end = end - 1
 
 while:
         cmp     r1, r2                @ while (start < end)
@@ -37,8 +37,8 @@ while:
         strb    r4, [r1]              @ *start = *end;
         strb    r3, [r2]              @ *end = temp;
 
-        add     r1, r1, #1
-        sub     r2, r2, #1
+        add     r1, r1, #1            @ start++;
+        sub     r2, r2, #1            @ end--;
 
         b       while 
 Done:  
