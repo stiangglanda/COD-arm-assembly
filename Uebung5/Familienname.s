@@ -63,6 +63,13 @@ Return:
 @			Output: 
 @			Funktion: 
 @                 
+@               char Capitalize(char c) {
+@                       if(c >= 'a' && c <= 'z') {
+@                               return c - 32;  // 'a' + 'A' = 32
+@                       }
+@                       return c;
+@               }       
+@
 @		-------------------------------------------------
 
 capitalize:
