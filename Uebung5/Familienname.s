@@ -22,7 +22,11 @@
 @                               if (*target == '\0') {
 @                                       return -1;
 @                               }
-@                               *target++ = capitalize(*source);
+@                               *source = capitalize(*source);
+@                               *source = noSpecials(*source);
+@                               if (*source != NULL) {
+@                                       *target++ = *source;
+@                               }
 @                               source++;
 @                       }
 @                       *target = '\0';
@@ -45,15 +49,15 @@ while:
         moveq   r0, #-1               @ return -1
         beq     Return
 
-        push    {r0}
-        mov     r0, r2
-        bl      capitalize
-        mov     r2, r0
-        pop     {r0}
+        push    {r0}                  @ Save r0
+        mov     r0, r2                @ r0 = *source
+        bl      capitalize            @ *source = capitalize(*source);
+        bl      noSpecials            @ *source = noSpecials(*source);
+        mov     r2, r0                @ r2 = *source
+        pop     {r0}                  @ Restore r0
 
-        
-        strb    r2, [r1], #1          @ *target++ = capitalize(*source);
-
+        cmp     r2, #0                @ if (*source != NULL) {
+        strbne  r2, [r1], #1          @ *target++ = *source; }
         add     r0, r0, #1            @ source++
         b       while
 Done:  
