@@ -57,7 +57,9 @@ while:
         pop     {r0}                  @ Restore r0
 
         cmp     r2, #0                @ if (*source != NULL) {
-        strbne  r2, [r1], #1          @ *target++ = *source; }
+        beq     SkipStore
+        strb    r2, [r1], #1          @ *target++ = *source; }
+SkipStore:
         add     r0, r0, #1            @ source++
         b       while
 Done:  
