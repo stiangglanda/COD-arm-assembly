@@ -4,7 +4,7 @@
 		
 @		=================================================
 @
-@		Name: <FAMILIENNAME> <VORNAME>       
+@		Name: Kieweg Leander       
 @
 @       	   >>>>FName am Dateiende editieren<<<<<
 @
@@ -16,8 +16,23 @@
 @			Input:   
 @			Output: 
 @			Funktion: 
+@
+@               int copyStr(char *source, char *target) {
+@                       while(*source != '\0') {
+@                               if (*target == '\0') {
+@                                       return -1;
+@                               }
+@                               *target = *source;
+@                               target++;
+@                               source++;
+@                       }
+@                       *target = '\0';
+@
+@                       return 0;
+@               }
 @                 
 @		-------------------------------------------------
+
 
 copyStr:
      	
@@ -51,5 +66,5 @@ noSpecials:
 @       =================================================
 
 		.data
-FName:	.asciz "MUELLER.txt"    @ HIER "MUELLER" ersetzen!!!
+FName:	.asciz "KIEWEG.txt"
 		.end
