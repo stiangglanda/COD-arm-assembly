@@ -64,7 +64,7 @@ Return:
 @			Funktion: 
 @                 
 @               char Capitalize(char c) {
-@                       if(c >= 'a' && 'z' >= c) {
+@                       if(c >= 'a' && c <= 'z') {
 @                               c = c - 32;  // 'a' - 'A' = 32
 @                       }
 @                       return c;
@@ -74,8 +74,10 @@ Return:
 
 capitalize:                           @ r0 = c
         cmp     r0, #'a'              @ if(c >= 'a'
-        cmpge   #'z', r0              @ && 'z' >= c)
-        subge   r0, r0, #32           @ c = c - 32;
+        blt     CapDone               
+        cmp     r0, #'z'              @ && c <= 'z')
+        suble   r0, r0, #32           @ c = c - 32;
+CapDone:
         mov     pc, lr                @ return c;
 
 
