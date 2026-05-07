@@ -6,12 +6,11 @@
 @		-------------------------------------------------
 @
 @               int copyStr(char *source, char *target) {
-@                       while(*source != '\0') {
+@                       while(*source++ != '\0') {
 @                               if (*target == '\0') {
 @                                       return -1;
 @                               }
 @                               *target++ = *source;
-@                               source++;
 @                       }
 @
 @                       while(*target != '\0') {

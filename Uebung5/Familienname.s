@@ -18,7 +18,7 @@
 @			Funktion: 
 @
 @               int copyStr(char *source, char *target) {
-@                       while(*source != '\0') {
+@                       while(*source++ != '\0') {
 @                               if (*target == '\0') {
 @                                       return -1;
 @                               }
@@ -27,9 +27,11 @@
 @                               if (*source != NULL) {
 @                                       *target++ = *source;
 @                               }
-@                               source++;
 @                       }
-@                       *target = '\0';
+@
+@                       while(*target != '\0') {
+@                               *target++ = ' ';
+@                       }
 @
 @                       return 0;
 @               }
