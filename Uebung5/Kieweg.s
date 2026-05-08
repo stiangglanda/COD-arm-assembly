@@ -42,7 +42,7 @@
 
 
 copyStr:                              @ r0 = char *source, r1 = char *target
-        push    {r2, r3, r4, lr}          @ Register retten
+        push    {r2, r3, r4, lr}      @ Register retten
 while:
         ldrb    r2, [r0], #1          @ r2 = *source++
         cmp     r2, #0                @ while(r2 != '\0')
@@ -75,7 +75,7 @@ PadWhile:
 Done:  
         mov     r0, #0                @ return 0;
 Return:
-        pop     {r2, r3, r4, lr}          @ Register restaurieren
+        pop     {r2, r3, r4, lr}      @ Register restaurieren
         mov     pc, lr                @ return
 		
 @		-------------------------------------------------
