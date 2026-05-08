@@ -15,8 +15,9 @@
 @           ARMSim#:        2.01 
 @			Input:    r0 = char *source, r1 = char *target
 @			Output:   r0 = 0 if successful, -1 if target is too small
-@			Funktion: Kopiert einen String in einen anderen String wandelt ihn in Großbuchstaben um und entfernt Sonderzeichen. 
-@			          Wenn der Zielstring zu klein ist, wird -1 zurückgegeben sonst 0. Das restliche Target wird mit Leerzeichen aufgefüllt.
+@			Funktion: Kopiert einen String in einen anderen String wandelt ihn in Großbuchstaben um 
+@                                 und entfernt Sonderzeichen. Wenn der Zielstring zu klein ist, wird -1 
+@                                 zurückgegeben sonst 0. Das restliche Target wird mit Leerzeichen aufgefüllt.
 @
 @               int copyStr(char *source, char *target) {
 @                       while(*source++ != '\0') {
