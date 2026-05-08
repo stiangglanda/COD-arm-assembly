@@ -13,9 +13,10 @@
 @			Programm-Name: 	copyStr	
 @			Programm-Art:	ASM-Unterprogramm
 @           ARMSim#:        2.01 
-@			Input:   
-@			Output: 
-@			Funktion: 
+@			Input:    r0 = char *source, r1 = char *target
+@			Output:   r0 = 0 if successful, -1 if target is too small
+@			Funktion: Kopiert einen String in einen anderen String wandelt ihn in Großbuchstaben um und entfernt Sonderzeichen. 
+@			          Wenn der Zielstring zu klein ist, wird -1 zurückgegeben sonst 0. Das restliche Target wird mit Leerzeichen aufgefüllt.
 @
 @               int copyStr(char *source, char *target) {
 @                       while(*source++ != '\0') {
@@ -80,9 +81,10 @@ Return:
 @
 @			Programm-Name: 	capitalize	
 @			Programm-Art:	ASM-Unterprogramm	 
-@			Input:   
-@			Output: 
-@			Funktion: 
+@			Input:    r0 = char c
+@			Output:   r0 = Großbuchstabe, falls Eingabe ein Kleinbuchstabe sonst unverändertes Zeichen
+@			Funktion: Wandelt Kleinbuchstaben (a-z) in Großbuchstaben (A-Z) um.
+@                                 Alle anderen Zeichen werden unverändert zurückgegeben.
 @                 
 @               char Capitalize(char c) {
 @                       if(c >= 'a' && c <= 'z') {
@@ -107,9 +109,9 @@ CapDone:
 @
 @			Programm-Name: 	noSpecials	
 @			Programm-Art:	ASM-Unterprogramm	 
-@			Input:   
-@			Output: 
-@			Funktion: 
+@			Input:    r0 = char c
+@			Output:   r0 = unverändertes Zeichen, falls Buchstabe (a-z oder A-Z) oder 0, falls Sonderzeichen
+@			Funktion: Prüft ob das Zeichen ein Buchstabe ist. Gibt das Zeichen zurück falls ja, sonst 0 (NULL).
 @               
 @               char NoSpecials(char c) {
 @                       char originalC = c

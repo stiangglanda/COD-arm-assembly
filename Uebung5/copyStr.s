@@ -28,7 +28,7 @@ copyStr:                              @ r0 = char *source, r1 = char *target
 while:
         ldrb    r2, [r0], #1          @ r2 = *source
         cmp     r2, #0                @ while(*source != '\0')
-        beq     Done
+        beq     PadWhile
 
         ldrb    r3, [r1]              @ r3 = *target
         cmp     r3, #0                @ if (*target == '\0')
