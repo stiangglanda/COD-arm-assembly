@@ -1,5 +1,5 @@
 .text
-.global AsciiToDec, Str2Dec
+.global Str2Dec
 
 AsciiToDec:
     cmp r0, #'0'
@@ -17,21 +17,28 @@ Str2Dec:
     push{r1, r2, r3, lr}
     mov r2, #0
     mov r1, r0
-loop:
+
     ldrb r0, [r1]
     cmp r0, #0
+    beq fault
+loop:
+    ldrb r0, [r1], #1
+    cmp r0, #0
     beq done
+
     bl AsciiToDec
     cmp r0, #-1
     beq fault
+
     mov r3, #10
     mul r2, r2, r3
     add r2, r2, r0
-    add r1, r1, #1
+    
     b loop
+
 fault:
     mov r0, #-1
-    pop{r1, r2, pc}
+    pop{r1, r2, r3, pc}
 done:
     mov r0, r2
-    pop{r1, r2, pc}
+    pop{r1, r2, r3, pc}
