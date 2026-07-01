@@ -14,7 +14,7 @@ notDigit:
 
 
 Str2Dec:
-    push{r1, r2, lr}
+    push{r1, r2, r3, lr}
     mov r2, #0
     mov r1, r0
 loop:
@@ -24,7 +24,8 @@ loop:
     bl AsciiToDec
     cmp r0, #-1
     beq fault
-    mul r2, r2, #10
+    mov r3, #10
+    mul r2, r2, r3
     add r2, r2, r0
     add r1, r1, #1
     b loop
