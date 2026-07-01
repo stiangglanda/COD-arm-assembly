@@ -10,9 +10,11 @@ EqualChars:
     push{r1, lr}
     cmp r0, #'a'
     subge r0, r0, #32 @ 'A'-'a'
+    @orr r0, r0, #32
 
     cmp r1, #'a'
     subge r1, r1, #32 @ 'A'-'a'
+    @orr r1, r1, #32
 
     cmp r0, r1
     moveq r0, #1
