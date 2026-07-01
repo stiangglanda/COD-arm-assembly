@@ -1,0 +1,40 @@
+## Push
+14 * 4 = 16*4 + 4*4 = 50₁₆
+
+50: -
+    z := y := 4
+    z → R3     MCAR++
+
+51: R7 → x
+    R3 → y
+    z := x-y
+    z → R7
+    z → MAR      MCAR++
+
+53: R2 → y
+    z := y
+    z → MDR     // Schreiben 4 Byte
+    MCAR: 4 × MCN
+    MCN = 0001
+
+## Pop
+18 * 4 = 16*4 + 8*4 = 60₁₆
+
+60: R7 → y
+    z := y
+    z → MAR     MCAR++
+
+61: MAR → x     // lesen 4 Byte
+    z := x
+    z → R2      MCAR++
+
+62: -
+    z := y := 4
+    z → R3      MCAR++
+
+63: R7 → x
+    R3 → y
+    z := x+y
+    z → R7
+    MCAR: 4 × MCN
+    MCN = 0001
