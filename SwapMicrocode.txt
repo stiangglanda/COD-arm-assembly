@@ -1,0 +1,29 @@
+1F * 4 = 64₁₀ + 60₁₀ = 7C₁₆
+
+7C: R1 → x
+    z := x
+    z → MAR     MCAR++
+
+7D: MDR → y     // Lesen 4 Byte
+    z := y
+    z → R3      MCAR++
+
+7E: R2 → x
+    z := x
+    z → MAR    MCAR++
+
+7F: MDR → y     // Lesen 4 Byte
+    R3 → x
+    z := x
+    z → MDR     // 4 Byte schreiben
+
+80: R1 → x
+    z := x
+    z → MAR
+    MCAR++
+
+81: -
+    z := y
+    z → MDR     // Schreiben 4 Byte
+    MCAR: 4 × MCN
+    MCN = 0001
