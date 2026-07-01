@@ -37,20 +37,22 @@ mainloop:
     cmp r2, r3 @ while left < right
     bge isPalindrom
 
-skip_left:
-    ldrb r0, [r2], #1 @ *left
+    ldrb r0, [r2]
     cmp r0, #' '
-    beq skip_left
+    addeq r2, r2, #1 @ *left++
+    beq mainloop
 
-skip_right:
-    ldrb r1, [r3], #-1 @ *right
+    ldrb r1, [r3] @ *right
     cmp r1, #' '
-    beq skip_right
+    subeq r3, r3, #1 @ *right--
+    beq mainloop
 
     bl EqualChars
     cmp r0, #0
     beq notPalindrom
 
+    add r2, r2, #1 @ *left++
+    sub r3, r3, #1 @ *right--
     b mainloop
 
 isPalindrom:
